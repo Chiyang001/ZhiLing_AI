@@ -1,0 +1,48 @@
+{
+    "ollama_base_url": "http://localhost:11434",
+    "max_response_length": 2000,
+    "debug_mode": false,
+    "common_applications": {
+        "记事本": "notepad",
+        "计算器": "calc",
+        "画图": "mspaint",
+        "浏览器": "start chrome",
+        "文件管理器": "explorer",
+        "任务管理器": "taskmgr",
+        "控制面板": "control",
+        "命令提示符": "cmd",
+        "PowerShell": "powershell",
+        "微信": "WeChat",
+        "QQ": "QQ",
+        "VSCode": "code",
+        "记事本++": "notepad++",
+        "火狐浏览器": "firefox",
+        "音乐播放器": "wmplayer",
+        "截图工具": "SnippingTool",
+        "系统设置": "ms-settings:",
+        "设备管理器": "devmgmt.msc",
+        "注册表编辑器": "regedit",
+        "服务管理": "services.msc"
+    },
+    "system_prompt_template": "你是一个智能桌面助手，名叫小助手。你可以帮助用户执行各种任务，包括打开应用程序、获取系统信息、管理文件等。请用友好、专业的语调与用户交流。",
+    "supported_tasks": [
+        "OPEN_APP",
+        "SYSTEM_INFO", 
+        "LIST_DIR",
+        "CREATE_FILE",
+        "DELETE_FILE",
+        "SEARCH_FILE",
+        "GET_WEATHER",
+        "SET_REMINDER"
+    ],
+    "task_descriptions": {
+        "OPEN_APP": "打开指定的应用程序",
+        "SYSTEM_INFO": "获取系统硬件和软件信息",
+        "LIST_DIR": "列出指定目录的文件和文件夹",
+        "CREATE_FILE": "创建新文件",
+        "DELETE_FILE": "删除指定文件",
+        "SEARCH_FILE": "搜索文件",
+        "GET_WEATHER": "获取天气信息",
+        "SET_REMINDER": "设置提醒"
+    }
+}
