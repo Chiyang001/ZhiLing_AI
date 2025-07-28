@@ -38,19 +38,93 @@
 ## 安装要求 📋
 
 ### 系统要求
-- Windows 10/11 (主要支持)
-- Python 3.7+
-- 至少4GB可用内存（推荐8GB+）
+- **操作系统**: Windows 10/11 (主要支持)
+- **Python版本**: Python 3.7+ (推荐Python 3.8+)
+- **内存**: 至少4GB可用内存（推荐8GB+）
+- **存储**: 至少2GB可用空间（用于AI模型）
+- **网络**: 首次下载AI模型需要网络连接
+
+### Python版本兼容性
+- ✅ Python 3.8+ (完全支持，推荐)
+- ✅ Python 3.7 (支持，需要额外的typing-extensions包)
+- ❌ Python 3.6及以下 (不支持)
 
 ### 依赖安装
 ```bash
 # 安装Python依赖
 pip install -r requirements.txt
 
+# 或者手动安装主要依赖：
+pip install requests>=2.28.0 psutil>=5.9.0
+
 # 主要依赖包括：
-# - requests: HTTP请求库
-# - psutil: 系统信息获取
+# - requests: HTTP请求库，用于与Ollama API通信
+# - psutil: 系统信息获取库，用于获取CPU、内存等系统信息
+# - typing-extensions: 类型提示支持 (Python < 3.8需要)
 ```
+
+### 可选依赖
+为了获得更好的性能和额外功能，你可以安装以下可选依赖：
+```bash
+# 更快的JSON处理
+pip install orjson>=3.8.0
+
+# 更快的HTTP客户端
+pip install httpx>=0.24.0
+
+# 系统通知支持
+pip install plyer>=2.1.0
+
+# 配置文件处理
+pip install pyyaml>=6.0
+
+# 彩色日志输出
+pip install colorlog>=6.7.0
+```
+# AI桌面助手 🤖
+
+基于Ollama的本地AI对话助手，支持与本地AI模型对话并执行各种桌面任务。
+
+## 功能特性 ✨
+
+### 🎯 智能对话
+- 支持多轮上下文对话，AI会记住之前的对话内容
+- 基于本地Ollama模型，保护隐私安全
+- 支持流式输出，实时显示AI回复
+- 提供标准模式和快速模式两种启动选项
+
+### 🚀 应用程序管理
+- **智能应用启动**: 支持模糊匹配，可通过应用名称快速打开程序
+- **系统工具访问**: 快速启动记事本、计算器、任务管理器等系统工具
+- **桌面快捷方式管理**: 自动扫描桌面和开始菜单的快捷方式
+- **应用程序搜索**: 搜索系统中已安装的应用程序
+
+### 📁 文件系统操作
+- **文件管理**: 新建、删除、重命名、复制、剪切文件和文件夹
+- **批量操作**: 支持一次执行多个文件操作任务
+- **智能文件匹配**: 模糊匹配文件名，提高操作成功率
+- **内容写入**: 将AI生成的内容写入txt、md等文本文件
+- **目录浏览**: 列出指定目录的文件和文件夹
+
+### ⚙️ 系统控制
+- **电源管理**: 关机、重启、注销、休眠、睡眠、锁定
+- **网络控制**: WiFi开关控制
+- **音量调节**: 系统音量调节和静音控制
+- **系统工具**: 启动设备管理器、服务管理器、注册表编辑器等
+- **系统信息**: 获取详细的系统配置信息
+
+### 🧹 系统维护
+- **垃圾清理**: 清理临时文件、浏览器缓存、回收站等
+- **磁盘管理**: 启动磁盘清理和管理工具
+- **性能监控**: 启动性能监视器和资源监视器
+
+## 安装要求 📋
+
+### 系统要求
+- Windows 10/11 (主要支持)
+- Python 3.7+
+- 至少4GB可用内存（推荐8GB+）
+
 
 ### Ollama安装
 1. 从 [Ollama官网](https://ollama.ai) 下载并安装Ollama
@@ -66,11 +140,61 @@ ollama pull llama3:8b         # 约4.5GB，综合表现好
 ollama pull codellama:7b      # 代码生成和理解
 ```
 
-## 使用方法 🚀
+## 快速开始 🚀
 
-### 启动程序
+### 完整安装步骤
+
+1. **检查Python版本**
+```bash
+python --version
+# 确保版本为 3.7 或更高
+```
+
+2. **克隆或下载项目**
+```bash
+# 如果使用Git
+git clone <repository-url>
+cd ai-desktop-assistant
+
+# 或者直接下载项目文件到本地文件夹
+```
+
+3. **安装Python依赖**
+```bash
+# 安装必需依赖
+pip install -r requirements.txt
+
+# 或者使用国内镜像加速安装
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+```
+
+4. **安装和配置Ollama**
+```bash
+# 下载并安装Ollama (访问 https://ollama.ai)
+# 安装完成后，下载推荐的AI模型：
+
+# 轻量级模型 (适合4GB内存)
+ollama pull gemma:2b
+
+# 平衡性能模型 (适合8GB内存)
+ollama pull llama3:8b
+
+# 高性能模型 (适合16GB+内存)
+ollama pull llama3:70b
+```
+
+5. **启动程序**
 ```bash
 python ai_desktop_assistant.py
+```
+
+### 快速启动
+```bash
+# 直接启动 (会自动检测可用模型)
+python ai_desktop_assistant.py
+
+# 使用快速模式启动
+python ai_desktop_assistant.py --quick
 ```
 
 ### 启动模式选择
